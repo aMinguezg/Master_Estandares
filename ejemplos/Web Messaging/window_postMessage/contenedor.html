@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+	function enviarDatos() {
+		console.info("El iframe ya ha cargado y puedo enviarle los datos");
+		var iframe=$("#anunciante")[0];
+		var datos=window.prompt("Escribe algo para enviar al iframe");
+		iframe.contentWindow.postMessage(datos,"http://danigayo.info");
+	}
+
+	window.addEventListener("message", recibirDatos, false);
+
+	function recibirDatos(e) {
+		console.info(e);
+		window.alert("Estos son los datos que me ha mandado la página cargada en el iframe:\n"+e.data);
+	}
+
+  </script>
+
+  <title>Contengo un iframe</title>
+ </head>
+ <body>
+  Esto es texto del documento y aquí al lado va un iframe con contenido de otro servidor.<p>
+  Esta página puede tener información muy interesante (p.ej. sobre cada uno de sus visitantes) que quiere pasar a los documentos que se cargan en el iframe (p.ej. porque van a generar anuncios personalizados).<p>
+
+  <iframe id="anunciante" onload="enviarDatos();" src="http://danigayo.info/HTML5/iframe.html" width="800" height="400"></iframe>
+ </body>
+</html>

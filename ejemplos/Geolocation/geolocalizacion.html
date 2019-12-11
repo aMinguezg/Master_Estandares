@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+ <head>
+  <title>Ejemplo de geolocalización</title>
+  <meta charset=utf-8>
+
+  <script language="javascript">
+    if (navigator.geolocation) 
+		//navigator.geolocation.getCurrentPosition(procesarPosicion, fallo);
+		var id=navigator.geolocation.watchPosition(procesarPosicion, fallo);
+	else
+		window.alert("Tu navegador no permite la geolocalización.");
+ 
+	function procesarPosicion(position) {
+		var latitud=position.coords.latitude;
+		var longitud=position.coords.longitude;
+		var exactitud=position.coords.accuracy;
+		var altitud=position.coords.altitude;
+		var exactitudAltitud=position.coords.altitudeAccuracy;
+		var direccion=position.coords.heading;
+		var velocidad=position.coords.speed;
+		var timestamp=position.timestamp;
+
+		var panel=document.getElementById("panel");
+
+		var mensaje="<p>"+latitud+", "+longitud+" (Error: "+exactitud+"m)<br>";
+
+		if (altitud!=null) 
+		  mensaje+=altitud+"m ("+exactitudAltitud+")<br>";
+		
+		if (direccion!=null)
+		  mensaje+=direccion+"<br>";
+		
+		if (velocidad!=null)
+		  mensaje+=velocidad+"m/s<br>";
+		
+		mensaje+=timestamp+"</p>";
+
+		panel.innerHTML+=mensaje;
+    }
+ 
+	function fallo() {
+		window.alert("No es posible geolocalizarte. Comprueba que tienes activada esa posibilidad.");
+	}
+
+  </script>
+
+ </head>
+
+ <body>
+   <div id="panel"></div>
+ </body>
+</html>

@@ -1,0 +1,22 @@
+<html> 
+	<head> 
+        <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   		<script language="javascript" src="canvas.js"></script> 
+
+		<style type="text/css">
+			.canvas {border-style:solid;border-width:1px;border-color:black;position:absolute;top:10px;left:10px;}
+		</style>
+	</head> 
+	<body> 
+    <canvas id="canvas" width="500" height="500" class="canvas"></canvas>  
+	
+	<script language="javascript">
+		colocarPaleta();
+		colocarPinceles();
+		$("#canvas").mousedown(startPintar);
+		$("#canvas").mouseup(endPintar);
+		$("#canvas").mousemove(pintar);
+	</script>
+	
+	</body> 
+</html> 

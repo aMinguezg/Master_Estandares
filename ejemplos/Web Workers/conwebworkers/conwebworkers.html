@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+	var counterWorker;
+	var fibonacciWorker;
+	
+	function startcounter() {
+		if (typeof(Worker)!==undefined) {
+			counterWorker=new Worker("counter.js");
+			counterWorker.onmessage=displayCounter;
+		} else
+			window.alert("Este navegador no soporta workers :(");
+	}
+
+	function displayCounter(e) {
+		$("#counter").text(e.data);
+	}
+
+	function fibonacci(number) {
+		if (typeof(Worker)!==undefined) {
+			fibonacciWorker=new Worker("fibonacci.js");
+			fibonacciWorker.postMessage(number);
+			fibonacciWorker.onmessage=displayFibonacci;
+		} else
+			window.alert("Este navegador no soporta workers :(");
+	}
+
+	function displayFibonacci(e) {
+		window.alert(e.data);
+	}
+
+	function stopit() {
+		if (counterWorker!=null) counterWorker.terminate();
+		if (fibonacciWorker!=null) fibonacciWorker.terminate();
+	}
+
+  </script>
+
+  <title>Con web workers</title>
+ 
+ </head>
+ <body onload="startcounter()">
+   <strong>Recuerda, no se pueden usar web workers con file:// Usa Mongoose</strong><p>
+   <span onmouseover="window.alert('dentro');" onmouseout="window.alert('fuera');">Al pasar por encima de este texto "pasan cosas" y, además, el display (que NO el contador) se para.</a><p>
+   <span onclick="window.alert('Después de cerrar este diálogo trata\nde volver a pasar por encima del enlace.\n¿Y qué pasa con el contador?');fibonacci(50);">Pincha aquí con total tranquilidad</span><p>
+   <span id="counter"></span><p>
+   <input type="button" value="STOP!" onclick="stopit();">
+ </body>
+</html>

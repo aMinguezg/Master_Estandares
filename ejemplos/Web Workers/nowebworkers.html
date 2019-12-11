@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <title>Sin web workers</title>
+ 
+  <script type="text/javascript">
+	function fibonacci(n) {
+	   console.info(n);
+	   if (n < 2){
+		 return 1;
+	   }else{
+		 return fibonacci(n-2) + fibonacci(n-1);
+	   }
+	}
+
+	var counter=0;
+	function startcounter() {
+		$("#counter").text(counter);
+		counter+=1;
+		setTimeout("startcounter()",100);
+	}
+  </script>
+
+ </head>
+ <body onload="startcounter()">
+   <span onmouseover="window.alert('dentro');" onmouseout="window.alert('fuera');">Al pasar por encima de este texto "pasan cosas" y, además, el contador se para.</a><p>
+   <span onclick="window.alert('Después de cerrar este diálogo trata\nde volver a pasar por encima del enlace.\n¿Y qué fue del contador?');window.alert(fibonacci(100));">Pincha aquí bajo tu responsabilidad</span><p>
+   <span id="counter"></span>
+ </body>
+</html>

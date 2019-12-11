@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Ejemplo de formulario</title>
+  <meta charset="utf-8">
+
+  <script language="javascript">
+    var rellenos=new Object();
+
+	function perdioFoco(campo) {
+	  var elemento=document.getElementById(campo);
+	  if (elemento.value!="") 
+	    rellenos[campo]=true;
+	  else {
+	    delete rellenos[campo];
+	  }
+	  progreso.value=Object.keys(rellenos).length;
+      if (progreso.value==4) {
+	    elemento=document.getElementById("enviar");
+		elemento.disabled=false;
+      }
+	}
+
+  </script>
+ </head>
+
+ <body>
+   <form oninput="nivelsatisfaccion.value=satisfaccion.value">
+    Puesto: <input type="text" name="puesto" list="puestos" placeholder="Escribe el nombre de tu puesto o selecciona uno de la lista" autofocus>
+    <datalist id="puestos">
+	 <option label="CEO" value="CEO">
+	 <option label="CTO" value="CTO">
+	 <option label="CFO" value="CFO">
+	 <option label="FEE" value="Front-end Engineer">
+	</datalist>
+
+	<p>
+	
+	Nombre: <input type="text" id="nombre" name="nombre" required placeholder="Escribe aquí tu nombre de pila" onblur="perdioFoco('nombre');">
+
+	Apellidos: <input type="text" id="apellidos" name="apellidos" required placeholder="Escribe aquí tus apellidos" onblur="perdioFoco('apellidos');">
+
+	<p>
+
+	e-mail: <input type="email" id="email" name="email" required placeholder="nobody@nowhere.com" onblur="perdioFoco('email');">
+
+	<p>
+
+	Fecha de nacimiento: <input type="date" id="nacimiento" name="nacimiento" required onblur="perdioFoco('nacimiento');">
+
+	<p>
+
+	Nivel de satisfacción (desde -10, muy insatisfecho hasta +10, muy satisfecho): <input type="range" id="satisfaccion" name="satisfaccion" min="-10" max="10" value="0" required>
+	<output name="nivelsatisfaccion">0</output>
+
+	<p>
+
+    <progress id="progreso" value="0" max="4"></progress>
+
+	<p>
+	
+	<input type="submit" id="enviar" disabled>
+   </form>
+ </body>
+</html>

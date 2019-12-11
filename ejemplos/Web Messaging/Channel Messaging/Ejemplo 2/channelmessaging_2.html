@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Segundo ejemplo de channel messaging (contenedor)</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+	
+	function cerrarCanal() {
+		// Lo máximo que puede hacer el padre es enviar un mensaje a todos los
+		// iframes para que cierren el canal. Ni que decir tiene que tanto el
+		// contenedor como los documentos contenidos deberían estar de acuerdo
+		// en qué "aspecto" tiene semejante mensaje.
+		//
+		var iframes=$("iframe");
+		for (i=0;i<iframes.length;i++) {
+			iframes[i].contentWindow.postMessage("CLOSE_CHANNEL","*");
+		}
+	}
+
+  </script>
+ </head>
+ <body>
+	<strong>Recordad, no va a funcionar con protocolo file://, usad Mongoose</strong><p>
+	Un ejemplo algo más elaborado en el que se establece un canal bidireccional entre dos documentos cargados en dos iframes. El documento padre no interviene para nada.<p>
+	Los frames se visualizan para mostrar cómo los mensajes se intercambian entre los iframes sin involucrar al documento padre.<p>
+
+	<iframe id="iframe_dominante" src="channelmessaging_2_hijo.html"></iframe>
+	<iframe id="iframe_no_dominante" src="http://danigayo.info/HTML5/channel/channelmessaging_2_hijo_2.html"></iframe>
+	<p>
+	<input type="button" value="Detener el canal" onclick="cerrarCanal();"/>
+ </body>
+</html>

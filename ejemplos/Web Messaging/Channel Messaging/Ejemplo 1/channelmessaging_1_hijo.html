@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Primer ejemplo de channel messaging (hijo)</title>
+
+  <script type="text/javascript">
+	window.addEventListener("message", listeningAll, false);
+
+	var channelSet=false;
+	var port;
+
+	// Para poder establecer un canal tenemos que recibir como un mensaje
+	// "tradicional" el puerto que nos ceden para esa comunicación.
+	//
+	// Además, tenemos que saber qué protocolo se va a usar tanto para
+	// establecer el canal como para intercambiar información.
+	//
+	function listeningAll(e) {
+		// Recordad que entre la información que recibimos están los puertos
+		// y que el script que creó el canal nos ha cedido un puerto para que
+		// lo manejemos desde aquí.
+		//
+		// De nuevo, el mensaje que se use para confirmar el establecimiento del canal es cosa vuestra
+		//
+		console.info("\tSoy el hijo y he recibido '"+e.data+"'");
+
+		if (e.data=="HELLO") {
+			port=e.ports[0];
+			port.postMessage("HELLO");
+			port.onmessage=listeningChannel;
+//			port.start(); // Innecesario por haber utilizado onmessage (ver https://developer.mozilla.org/en-US/docs/Web/API/MessagePort/start)
+			channelSet=true;
+		}
+	}
+
+	// La función que va a escuchar en el canal
+	//
+	function listeningChannel(e) {
+		if (channelSet) {
+			console.info("\tSoy el hijo y he recibido por el canal '"+e.data+"'");
+			var number=e.data*2+1;
+			var message=number;
+			console.info("\tSoy el hijo y voy a enviar por el canal '"+message+"'");
+			port.postMessage(message);
+		}
+	}
+
+  </script>
+ </head>
+ <body>
+  
+ </body>
+</html>

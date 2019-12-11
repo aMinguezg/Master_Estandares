@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Primer ejemplo de channel messaging (padre)</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+	var iframe;
+
+	function locateTargetWindow() {
+		// Localizamos el frame y hacemos que una vez esté cargado
+		// se inicie la comunicacion
+		//
+		iframe=$("#iframe");
+		iframe.load(startCommunication);
+	}
+
+	var channel;
+
+	function startCommunication() {
+		// Se crea el canal
+		//
+	    channel = new MessageChannel();
+
+		// Cedemos uno de los dos puertos al script con el que queremos 
+		// comunicarnos. Esa información se envía usando un postMessage
+		// "tradicional"
+		//
+		// El contenido de este mensaje dependerá del 'protocolo' que diseñéis
+		//
+		iframe[0].contentWindow.postMessage("HELLO","*",[channel.port2]); 
+		// También se podría "ceder" channel.port1, se pase el que se pase os quedáis con el otro 
+
+		// En el puerto que nos quedamos ponemos una función a la escucha para
+		// recibir la confirmación del otro script y así terminar la creación
+		// del canal.
+		//
+		channel.port1.onmessage=listeningChannel;
+//		channel.port1.start(); // Innecesario por haber utilizado onmessage (ver https://developer.mozilla.org/en-US/docs/Web/API/MessagePort/start)
+	}
+
+	var channelSet=false;
+
+	// La función que escucha en el canal. Lo primero que habría que hacer es
+	// confirmar que hay un canal de comunicación con nuestro destino.
+	//
+	function listeningChannel(e) {
+		if (e.data=="HELLO") {
+			console.info("Soy el padre: el canal ha quedado confirmado");
+			channelSet=true;
+			communicateForAwhile();
+		} else if (channelSet) {
+			console.info("Soy el padre y he recibido por el canal '"+e.data+"'");
+		}
+	}
+
+	// Código muy sencillo que se limita a enviar un número cada 3 segundos
+	//
+	var counter=0;
+	function communicateForAwhile() {
+		counter++;
+		var message=counter;
+		console.info("Soy el padre y voy a enviar '"+message+"'");
+
+		// ¡Atención! Observad que se usa port1 para escritura y para lectura
+		//
+		channel.port1.postMessage(message);
+		if (counter<10)
+			setTimeout(communicateForAwhile,3000);
+	}
+
+	function cerrarCanal() {
+		channel.port1.close();
+		console.info("Soy el padre, he cerrado el puerto así que ya no pueden intercambiarse más mensajes.");
+	}
+
+	$(document).ready(locateTargetWindow);
+  </script>
+ </head>
+ <body>
+	<strong>Recordad, no va a funcionar con protocolo file://, usad Mongoose</strong><p>
+	Un ejemplo sencillo en el que se establece un canal bidireccional entre un documento padre y otro documento cargado en un iframe.</p>
+	<strong>Toda la acción tiene lugar en la consola así que abridla.</strong><p>
+
+	<input type="button" value="Detener el canal" onclick="cerrarCanal();"/>
+
+	<iframe id="iframe" src="http://danigayo.info/HTML5/channel/channelmessaging_1_hijo.html" width="0" height="0" style="visibility:hidden;"></iframe>
+ </body>
+</html>

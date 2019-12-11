@@ -1,0 +1,13 @@
+<div itemscope itemtype="http://schema.org/Person" itemid="http://danigayo.info">
+	
+  I'm <span itemprop="name">Daniel Gayo-Avello</span>, an <span itemprop="jobTitle">associate professor</span> in the <span itemprop="affiliation" itemscope itemtype="https://schema.org/CollegeOrUniversity"><span itemprop="department" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">Department of Computer Science</span></span> at the <span itemprop="name">University of Oviedo</span></span>. 
+
+  My main <a href="/research">area of interest</a> is Web IR but I'm currently focused on <a href="/research/#socialmediaresearch">social media research</a>. 
+	
+  <a href="/publications">I have published</a> in international conferences, journals and magazines, such as <span itemscope itemtype="http://schema.org/Periodical"><a href="/publications/detail.php?id=..."><em><span itemprop="name">Communications of the ACM</span></em></a></span>, <span itemscope itemtype="http://schema.org/Periodical"><a href="/publications/detail.php?id=..."><em><span itemprop="name">IEEE Internet Computing</span></em></a></span>, or <span itemscope itemtype="http://schema.org/Periodical"><a href="/publications/detail.php?id=..."><em><span itemprop="name">IEEE Multimedia</span></em></a></span>. 
+	
+  In 2013 I acted as guest co-editor for a <a href="http://www.emeraldinsight.com/toc/intr/23/5">special issue of <span itemscope itemtype="http://schema.org/Periodical"><em><span itemprop="name">Internet Research</span></em></span> on the predictive power of social media</a>. 
+	
+  I have recently contributed a <span itemscope itemtype="http://schema.org/Chapter"><a href="/publications/detail.php?id=...">chapter on <span itemprop="name">Political Opinion</span></a><link itemprop="isPartOf" itemscope itemtype="http://schema.org/Book" itemid="urn:isbn:9781107500075"/></span> to <span itemscope itemtype="http://schema.org/Book" itemid="urn:isbn:9781107500075"><span itemprop="name">"Twitter: A Digital Socioscope"</span>, published by <span itemprop="publisher">Cambridge University Press</span></span>.
+
+</div>

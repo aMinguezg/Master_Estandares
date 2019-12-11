@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Soy contenido para un iframe</title>
+
+  <script type="text/javascript">
+	window.addEventListener("message", recibirDatos, false);
+
+	function recibirDatos(e) {
+		console.info(e);
+		window.alert("Estos son los datos que me ha mandado la página contenedora:\n"+e.data);
+	}
+
+	function enviarDatosPadre() {
+		parent.postMessage("DATOS QUE EL IFRAME ENVÍA AL CONTENEDOR","*");
+	}
+
+  </script>
+ </head>
+ <body>
+  Soy contenido para un iframe que está en otro servidor.<p>
+  Me interesa recibir información de la página que me contiene, p.ej. para servir anuncios personalizados.<p>
+  <strong onclick="enviarDatosPadre();">Pincha aquí para enviar información al documento contenedor</strong>
+ </body>
+</html>

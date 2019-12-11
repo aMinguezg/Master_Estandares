@@ -1,0 +1,15 @@
+<html> 
+	<head> 
+        <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+   		<script language="javascript" src="localstorage.js"></script> 
+	</head> 
+	<body> 
+		<script language="javascript">
+			window.alert("¡Atención! El elemento canvas es mucho mejor que lo que vamos a hacer aquí. Avisados quedáis...");
+			cargarImagenAnterior();
+			$("body").mousedown(startPintar);
+			$("body").mouseup(endPintar);
+			$("body").mousemove(pintar);
+		</script>
+	</body> 
+</html> 

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Segundo ejemplo de channel messaging (hijo no dominante)</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <script type="text/javascript">
+	window.addEventListener("message", listeningAll, false);
+
+	var channelSet=false;
+	var port;
+
+	// Para poder establecer un canal tenemos que recibir como un mensaje
+	// "tradicional" el puerto que nos ceden para esa comunicación.
+	//
+	// Además, tenemos que saber qué protocolo se va a usar tanto para
+	// establecer el canal como para intercambiar información.
+	//
+	function listeningAll(e) {
+		// Recordad que entre la información que recibimos están los puertos
+		// y que el script que creó el canal nos ha cedido un puerto para que
+		// lo manejemos desde aquí.
+		//
+		// De nuevo, el mensaje que se use para confirmar el establecimiento del canal es cosa vuestra
+		//
+		pseudo_console_info("\tSoy el hijo no dominante y he recibido '"+e.data+"'");
+
+		if (e.data=="HELLO") {
+			port=e.ports[0];
+			port.postMessage("HELLO");
+			port.onmessage=listeningChannel;
+//			port.start(); // Innecesario por haber utilizado onmessage (ver https://developer.mozilla.org/en-US/docs/Web/API/MessagePort/start)
+			channelSet=true;
+		} else if (e.data=="CLOSE_CHANNEL") {
+			port.close();
+			pseudo_console_info("Soy el hijo no dominante, he cerrado el puerto así que ya no pueden intercambiarse más mensajes.");
+		}
+
+	}
+
+	// La función que va a escuchar en el canal
+	//
+	function listeningChannel(e) {
+		if (channelSet) {
+			pseudo_console_info("\tSoy el hijo no dominante y he recibido por el canal '"+e.data+"'");
+			var number=e.data*2+1;
+			var message=number;
+			pseudo_console_info("\tSoy el hijo no dominante y voy a enviar por el canal '"+message+"'");
+			port.postMessage(message);
+		}
+	}
+
+	// En esta ocasión no vamos a sacar mensajes por consola sino en el propio
+	// documento. Así se apreciará mejor que el documento contenedor no juega
+	// ningún papel en absoluto en el paso de mensajes.
+	//
+	function pseudo_console_info(msg) {
+		$("#log").append("<li>"+msg+"</li>");
+		$(document).scrollTop($(document).height());
+	}
+
+  </script>
+ </head>
+ <body>
+ <body>
+	Soy un documento que reside en el mismo servidor que el documento contenedor pero eso es irrelevante.<p>
+	Será otro iframe con un documento que reside en otro dominio quien inicie el canal.</p>
+    <ul id="log"></ul>
+ </body>
+</html>
