@@ -1,27 +1,40 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Pomodoro</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pomodoro</title>
+        <link rel="stylesheet" href="style.css">
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="scripts.js"></script>
+    </head>
 
-<body>
-    <form action="">
-        <input type="text" id="textoTarea">
-        <input type="submit" value="Submit" id="botonTarea">
-    </form>
-    <section id="tareas">
-        <progress max="25" value="1"></progress>
-        <button id="botonStartTarea"></button>
-        <ul id="tareasRealizadas">
-            
-        </ul>
-    </section>
-    <section id="descanso">
-        <progress max="5" value="3"></progress>
-        <button id="botonDescanso"></button>
-    </section>
-</body>
+    <body>
+        <section id="tareas">
+            <section id="addTarea">
+                <input type="text" id="textoTarea">
+                <input type="submit" value="Submit" id="botonTarea">
+                <br>
+                <progress max="25" value="1"></progress>
+            </section>
+            <section id="tareaIniciada">
+                <button id="botonGoDescanso"></button>
+                <ul id="tareasRealizadas">
+                </ul>
+            </section>
+        </section>
+        
+        <section id="descanso">
+            <section id="setDescanso">
+                <progress max="5" value="3"></progress>
+                <button id="botonStartDescanso"></button>
+            </section>
+            <section id="finDescanso">
+                <button id="botonBackTarea"></button>
+            </section>
+
+        </section>
+    </body>
 
 </html>
