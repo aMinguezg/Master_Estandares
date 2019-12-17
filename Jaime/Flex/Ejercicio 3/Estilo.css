@@ -1,0 +1,40 @@
+main {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: green;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 100vh;
+
+}
+
+.cuadrado {
+    width: calc(100vw - 76.67%);
+    height: calc(100vh - 76.67%);;
+    background-color: blueviolet;
+}
+
+#div1{
+    order: 1;
+}
+
+#div2{
+    order: 3;
+}
+
+#div3{
+    order: 4;
+}
+
+#div4{
+    order: 5;
+}
+
+#div5{
+    order: 6;
+}
+
+
+#div6{
+    order: 2;
+}

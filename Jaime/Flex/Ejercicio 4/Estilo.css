@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+    flex-direction: row;
+    height: 100vh;
+
+}
+
+header {
+    width: 100vw;
+    height: calc(100vh - 80%);
+    background-color: blueviolet;
+    color: white;
+}
+
+main {
+    width: 100vw;
+    height: calc(100vh - 40%);
+    background-color: yellow;
+}
+
+footer {
+    width: 100vw;
+    height: calc(100vh - 80%);
+    background-color: blue;
+    color: white;
+}

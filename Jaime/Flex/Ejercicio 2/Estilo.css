@@ -1,0 +1,16 @@
+main {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: green;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.cuadrado {
+    width: calc(100vw - 76.67%);
+    height: calc(100vh - 85%);;
+    background-color: blueviolet;
+}
