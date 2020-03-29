@@ -4,6 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Ficha</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Ensures optimal rendering on mobile devices. -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
+
+
 </head>
 
 <body>
@@ -16,23 +22,76 @@
             </ul>
         </nav>
     </header>
-    <aside>
 
-
-    </aside>
     <main>
-        <section>
-            <figure>
+        <section id="fotosProducto">
+            <figure id="imagenPrincipal">
                 <img src="" alt="">
             </figure>
-            <h1></h1>
-            <h2></h2>
-            <p></p>
+            <section id="galeria">
+                <img src="" alt="" id="img1" class="miniatura">
+                <img src="" alt="" id="img2" class="miniatura">
+                <img src="" alt="" id="img3" class="miniatura">
+                <img src="" alt="" id="img4" class="miniatura">
+            </section>
+        </section>
+        <section id="datosProducto">
+
+            <h1 id="nombreProducto">Titulo Producto</h1>
+            <h2 id="subProducto">Subtitulo producto</h2>
+            <section id="datosPago">
+                <p id="descripcion">Este producto...</p>
+                <section id="precio">
+                    <p id="precioUnidad">(x 12.5e / unidad)</p>
+                    <input type="number" name="" id="unidades" value=1>
+                    <script
+                        src="https://www.paypal.com/sdk/js?client-id=AY-4YyE6rp05MDc2Zfy-sse5j21ych_rXg_qTTtprjws3UtUcuPaDkP2cHfpL9ABASU39HAfYVk0_ndu&components=buttons,funding-eligibility"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.</script>
+                    <div id="paypal-button-container"></div>
+                    <script>
+
+                        var FUNDING_SOURCES = [
+                            paypal.FUNDING.PAYPAL
+                        ];
+
+                        FUNDING_SOURCES.forEach(function (fundingSource) {
+
+                            // Initialize the buttons
+                            var button = paypal.Buttons({
+                                fundingSource: fundingSource,
+                                createOrder: function (data, actions) {
+                                    // This function sets up the details of the transaction, including the amount and line item details.
+                                    return actions.order.create({
+                                        purchase_units: [{
+                                            amount: {
+                                                value: document.getElementById("unidades").value * 35.99
+                                            }
+                                        }]
+                                    });
+                                },
+                                onApprove: function (data, actions) {
+                                    // This function captures the funds from the transaction.
+                                    return actions.order.capture().then(function (details) {
+                                        // This function shows a transaction success message to your buyer.
+                                        alert('Transaction completed by ' + details.payer.name.given_name);
+                                    });
+                                }
+                            });
+
+                            // Check if the button is eligible
+                            if (button.isEligible()) {
+
+                                // Render the standalone button for that funding source
+                                button.render('#paypal-button-container');
+                            }
+                        });
+                    </script>
+                </section>
+            </section>
 
         </section>
     </main>
     <footer>
-
+        dfg
     </footer>
 </body>
 
