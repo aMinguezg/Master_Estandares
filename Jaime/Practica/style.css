@@ -2,7 +2,11 @@ body {
     width: 100%;
     height: 100vh;
     display: grid;
+    background-image: url("bg.jpg");
     grid-template-rows: 15% 70% 15%;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Helvetica, Arial, sans-serif;
     grid-template-areas: 
     "header"
     "main"
@@ -12,12 +16,12 @@ body {
 
 header {
     grid-area: "header";
-    background-color: blue;
+    background-color:rgba(211, 222, 232, 0.2);
+    text-align: center;
 }
 
 main {
     grid-area: "main";
-    background-color: yellow;
     display: grid;
     grid-template-columns: 30% 70%;
     grid-template-areas: 
@@ -27,14 +31,20 @@ main {
 
 footer {
     grid-area: "footer";
-    background-color: green;
+    background-color:rgba(211, 222, 232, 0.2);
+    text-align: right;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
 }
 
 
 #fotosProducto{
     grid-area: "imagenes";
-    background-color: red;
     display: grid;
+    height: 65vh;
+    margin-top: 6vh;
     grid-template-rows: 70% 30%;
     grid-template-areas: 
     "imgPrincipal"
@@ -44,11 +54,13 @@ footer {
 
 #datosProducto{
     grid-area: "datos";
-    background-color: orange;
     display: grid;
+    height: 60vh;
+    margin-top: 5vh;
     grid-template-rows: 10% 10% 70%;
     grid-template-columns: 90%;
     justify-content: space-around;
+    background-color:rgba(211, 222, 232, 0.2);
     grid-template-areas: 
     "nomProducto"
     "subProducto"
@@ -59,7 +71,6 @@ footer {
 
 #imagenPrincipal{
     grid-area: "imgPrincipal";
-    background-color: black;
 }
 
 #galeria{
@@ -73,22 +84,18 @@ footer {
 .miniatura {
     width: 20%;
     height: 50%;
-    background-color: blueviolet;
 }
 
 #nombreProducto{
     grid-area: "nomProducto";
-    background-color: red;
 }
 
 #subProducto{
     grid-area: "subProducto";
-    background-color: blue;
 }
 
 #datosPago{
     grid-area: "datosPago";
-    background-color: darkgreen;
     display: grid;
     grid-template-rows: 70% 30%;
     grid-template-areas: 
@@ -103,7 +110,7 @@ footer {
 
 #precio{
     grid-area: "precio";
-    background-color: darkolivegreen;
+    background-color:rgba(211, 222, 232, 0.4);
     display: grid;
     align-items: center;
     justify-items: center;
@@ -131,3 +138,74 @@ footer {
     width: 80%;
 }
 
+main img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+  }
+
+  a {
+      text-decoration: none;
+      margin-right: 4vw;
+  }
+
+
+@media (max-width: 400px)  {
+
+
+    body {
+    display: grid;
+    background-image: url("bg.jpg");
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Helvetica, Arial, sans-serif;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer"    
+    ;
+}
+
+main {
+    grid-area: "main";
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+    "imagenes"
+    "datos";
+}
+#datosPago{
+    grid-area: "datosPago";
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+    "precio"
+    ;
+}
+
+#descripcion{
+    display: none;
+}
+
+#precio{
+    grid-area: "precio";
+    background-color:rgba(211, 222, 232, 0.4);
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-evenly;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+    "precioUnidad" 
+    "unidades" 
+    "pagoPaypal"
+    ;
+}
+
+}
