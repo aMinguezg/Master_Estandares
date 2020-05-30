@@ -3,9 +3,10 @@ body {
     height: 100vh;
     display: grid;
     background-image: url("bg.jpg");
-    grid-template-rows: 15% 70% 15%;
+    grid-template-rows: 15vh 70vh 15vh;
     font-size: 16px;
     line-height: 1.5;
+    overflow-x: hidden;
     font-family: Helvetica, Arial, sans-serif;
     grid-template-areas: 
     "header"
@@ -22,6 +23,8 @@ header {
 
 main {
     grid-area: "main";
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 footer {
@@ -32,6 +35,10 @@ footer {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 #mosaico{
@@ -43,8 +50,8 @@ footer {
 }
 
 .fotoMosaico {
-    width: 22vw;
-    height: 20vh;
+    width: 24vw;
+    height: 50vh;
     margin-top: 3vh;
 }
 
@@ -58,4 +65,8 @@ main img {
   a {
     text-decoration: none;
     margin-right: 4vw;
+}
+
+.lazy {
+    visibility: hidden;
 }

@@ -4,13 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Ficha</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Ensures optimal rendering on mobile devices. -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AY-4YyE6rp05MDc2Zfy-sse5j21ych_rXg_qTTtprjws3UtUcuPaDkP2cHfpL9ABASU39HAfYVk0_ndu&components=buttons,funding-eligibility"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styleFicha.css" />
+    <script src="js/scriptFicha.js"></script>
 </head>
 
 <body>
@@ -21,44 +16,22 @@
     </header>
 
     <main>
-        <section id="fotosProducto">
-            <figure id="imagenPrincipal">
-                <img src="pjumbo.PNG" alt="" style="width:100%;height:100%;" id="img0">
-            </figure>
-            <section id="galeria">
-                <img src="pjumbo.PNG" alt="" id="img1" class="miniatura">
-                <img src="pjumbo2.PNG" alt="" id="img2" class="miniatura">
-                <img src="pjumbo3.PNG" alt="" id="img3" class="miniatura">
-                <img src="pjumbo4.PNG" alt="" id="img4" class="miniatura">
-            </section>
+        <section id="galeria">
+                <img src="resources/s10e.jpg" alt="" id="img1" class="miniatura">
+                <img src="resources/s10egaleria.jpg" alt="" id="img2" class="miniatura">
+                <img src="resources/s10colores.jpg" alt="" id="img3" class="miniatura">
+                <img src="resources/s10oblicuo.jpg" alt="" id="img4" class="miniatura">
+                <img src="resources/s10trasera.jpg" alt="" id="img1" class="miniatura">
         </section>
-        <section id="datosProducto">
-
-            <h1 id="nombreProducto">Jumbo - Puzzle y roll up</h1>
-            <h3 id="subProducto">1500 piezas, color verde</h3>
-            <section id="datosPago">
-                <ul id="descripcion">
-                        <li>Almacena tus rompecabezas.</li><br> 
-                        <li>Podrás clasificar y construir.</li><br>
-                        <li>Marca puzles Mates.</li><br>
-                        <li>Con su tecnología antideslizante no se moverán las fichas.</li><br>
-                        <li>Es muy facil de guardar por su reducido tamaño.</li><br>
-                        <li>Ideal para mover puzzles sin acabar.</li>
-                </ul>
-                <section id="precio">
-                    <p id="precioUnidad"></p>
-                    <input type="number" name="" id="unidades" value=1 min=1>
-                    <section id="paypal-button-container"></section>
-
-                </section>
-            </section>
+        <section id="informacionProducto">
 
         </section>
+        
     </main>
     <footer>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact us</a>
+        <a href="Home.html">Inicio</a>
+        <a href="#">Acerca</a>
+        <a href="#">Contacto</a>
     </footer>
 </body>
 
