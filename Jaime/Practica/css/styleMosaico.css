@@ -1,24 +1,44 @@
 body {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 15vh 75vh 10vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: Helvetica, Arial, sans-serif;
+    grid-template-areas: 
+    "header"
+    "main"
+    "footer"    
+    ;
+}
+
+header {
+    grid-area: "header";
+}
+
+header nav{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+main {
+    grid-area: "main";
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     overflow-x: hidden;
-    overflow-y: hidden;
-}
-
-header {
-    height: 10vh;
-}
-
-main {
-    height: 82vh;
     overflow-y: scroll;
 }
 
 footer {
-    height: 8vh;
+    grid-area: "footer";
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 #mosaico{
@@ -38,4 +58,28 @@ footer {
 
 .lazy {
     visibility: hidden;
+}
+
+#logo {
+    height: 90%;
+    width: 20%;
+}
+
+#sectionMenu  {
+    height: 100%;
+    width: 75%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+nav a {
+    text-decoration: none;
+    margin-top: 2%;
+}
+
+footer a {
+    text-decoration: none;
+    margin-top: 1%; 
 }
