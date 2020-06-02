@@ -15,6 +15,7 @@ body {
 
 header {
     grid-area: "header";
+    background-color: #BF99BA;
 }
 
 header nav{
@@ -39,6 +40,7 @@ footer {
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-evenly;
+    background-color: #BF99BA;
 }
 
 #mosaico{
