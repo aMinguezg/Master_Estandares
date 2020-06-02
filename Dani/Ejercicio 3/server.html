@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Servidor</title>
+	<script type="text/javascript">
+		window.addEventListener("message", recibirDatos, false);
+
+		function recibirDatos(e) {
+			let indiceFoto = e.data % 4 + 1;
+			parent.postMessage("http://156.35.95.88:8080/postmessage/resources/pixel" + indiceFoto + ".jpg", "*");
+		}
+	</script>
+</head>
+
+<body>
+</body>
+
+</html>
